@@ -63,7 +63,6 @@ dia 3 = "Quinta"
 dia 4 = "Sexta"
 
 
-
 -- Guardas
 somavendas :: Int -> Int
 somavendas n
@@ -74,23 +73,6 @@ somavendas n
 somavendas' :: Int -> Int
 somavendas' 0 = vendas 0
 somavendas' n = vendas n + somavendas' (n-1)
-
-------------------------------------
-
--- Fatorial - tail recursion
-
-fatorial :: Int -> Int
-fatorial n = fatAux n 1
-
-fatAux :: Int -> Int -> Int
-fatAux 0 acc = acc
-fatAux n acc = fatAux (n-1) (n*acc)
-
-
-fibo :: Int -> Int
-fibo 1 = 0
-fibo 2 = 1
-fibo n = fibo (n-1) + fibo (n-2)
 
 
 

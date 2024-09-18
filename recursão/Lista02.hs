@@ -46,9 +46,9 @@ somaFatorial n = fatorial n + somaFatorial (n - 1)
 -- 7. Escreva uma função recursiva approxPi :: Integer -> Double que calcule
 -- uma aproximação de π somando os primeiros n termos da série de Leibniz
 
--- approxPi :: Integer -> Double
--- approxPi 0 = 0
--- approxPi n = (4 / (2 * n + 1)) - (4 / (2 * (n + 1))) + approxPi (n - 1)
+approxPi :: Integer -> Double
+approxPi 0 = 0
+approxPi n = (4 / (2 * n + 1)) - (4 / (2 * (n + 1))) + approxPi (n - 1)
 
 -- 8. Denir uma função para somar dois números utilizando a função sucessor.
 somaSucc :: Integer -> Integer -> Integer
@@ -87,7 +87,7 @@ concatenar palavra n = palavra ++ concatenar palavra (n - 1)
 -- Chamada recursiva como última operação: A função faz a chamada recursiva e não precisa "lembrar" de fazer algo após essa chamada, pois não há operações pendentes.
 -- Eficiência: Linguagens como Haskell, Scala, e muitas outras, otimizam a recursão de cauda. Elas transformam a recursão de cauda em uma iteração interna, evitando o crescimento da pilha de chamadas e prevenindo estouros de pilha (stack overflow).
 
---16. Denfir uma função para receber um número N e devolver a tabuada de N.
+--14. Denfir uma função para receber um número N e devolver a tabuada de N.
 tabuada :: Int -> Int -> IO ()
 tabuada _ 11 = return ()  -- Caso base: quando chega a 11, para
 tabuada n i = do
@@ -96,9 +96,9 @@ tabuada n i = do
 
 -- Função principal para começar a tabuada do número N
 tabuadaN :: Int -> IO ()
-tabuadaN n = tabuada n 1  -- Inicia a tabuada a partir do número 1
+tabuadaN n = tabuada n 1  -- Inicia a tabuada a partir do número 1                                                             
 
--- 14 Defina uma função fibonacci que receba um inteiro n e retorne o n- ésimo número da sequência de Fibonacci. 
+-- 15. Defina uma função fibonacci que receba um inteiro n e retorne o n- ésimo número da sequência de Fibonacci. 
 --Defina a função fibonacci utilizando recursão de cauda. Compare o tempo de execução.
 fibonacci :: Int -> Int
 fibonacci 0 = 0
@@ -112,13 +112,13 @@ fibonacciTail n = fibAux n 0 1
     fibAux 0 a _ = a
     fibAux n a b = fibAux (n - 1) b (a + b)
 
---17. Calcular o valor de e com n termos 
+--16. Calcular o valor de e com n termos 
 -- Função recursiva para calcular o fatorial
 fatorial :: Int -> Int
 fatorial 0 = 1
 fatorial n = n * fatorial (n - 1)
 
--- Função recursiva para calcular o valor de e usando n termos
+-- 17. Função recursiva para calcular o valor de e usando n termos
 calcularE :: Int -> Double
 calcularE 0 = 1  -- Caso base: o primeiro termo da série é 1
 calcularE n = 1 / fromIntegral (fatorial n) + calcularE (n - 1)
