@@ -68,17 +68,10 @@ calcularTotal ((nome, preco) : restanteLista) = preco + calcularTotal restanteLi
 
 -- Questao 09 
 formatarTotal :: Int -> String 
--- Um comportamento muito similar de uma funcao ja criada...
-formatarTotal valorTotal = formatarLinha ("Total:", valorTotal)
-
-{-
- - Caso queira desenvolver a funcao, segue abaixo comentada
-
 formatarTotal valorTotal = "Total:" ++ repetir quantidade "." ++ dividir valorTotal ++ "\n" 
   where
   tamanhoPreco = length(dividir valorTotal) 
   quantidade = tamanhoLinha - (tamanhoPreco + length("Total:"))
--}
 
 -- Questao 10 
 formatarConta :: [(Nome, Preco)] -> String 

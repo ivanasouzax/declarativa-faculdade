@@ -31,32 +31,22 @@ pegarInicial (a:b) = [toLower a]
 -- transformar ["Ricardo","Souza","Silva"] = "rss"
 transformar :: [String] -> String
 transformar [] = []
-transformar (a:b) = pegarInicial a ++ transformar b
+transformar (palavra:restante)
+  | minuscula palavra == "do" ||  minuscula palavra == "dos" || minuscula palavra == "de" || 
+      minuscula palavra == "da" || minuscula palavra == "das" = transformar restante 
+  | otherwise = pegarInicial palavra ++ transformar restante 
+  where 
+    minuscula [] = [] 
+    minuscula (caractere:palavra) = toLower(caractere) : minuscula palavra 
 
 converte :: String -> String
-converte str = transformar (splitWord(removerPalavras str)) ++ "@uesb.edu.br"
+converte str = transformar (splitWord(removerEspacosDuplicados str)) ++ "@uesb.edu.br"
 
 -- Converter uma lista de nomes em uma lista de e-mails
 -- converte ["Ricardo Souza Silva", "Ivana Souza Santos"] = ["rss@uesb.edu.br","iss@uesb.edu.br"]
 converte2 :: [String] -> [String]
 converte2 [] = []
 converte2 (a:b) = converte a : converte2 b
-
--- Remover palavras "do", "dos", "de", "da", "das", porém existe um erro porque remover também o ultimo sobrenome
-removerPalavras :: String -> String
-removerPalavras = removerPalavrasAux "" -- Função auxiliar começa com palavra vazia
-
-removerPalavrasAux :: String -> String -> String
-removerPalavrasAux _ [] = []  
-removerPalavrasAux palavra (a:b)
-    | a == ' ' = processarPalavra palavra ++ " " ++ removerPalavrasAux "" b
-    | otherwise = removerPalavrasAux (palavra ++ [a]) b
-
--- Função que verifica se a palavra deve ser removida
-processarPalavra :: String -> String
-processarPalavra x
-    | x`elem` ["do", "dos", "de", "da", "das"] = ""  -- Remove se for uma das palavras
-    | otherwise = x  -- Mantém a palavra caso não seja uma das indesejadas
 
 -- Verificar o tamanho dos espaços
 -- "Ricardo    Souza     Silva"  = "Ricardo Souza Silva"
@@ -75,10 +65,3 @@ verificarNome [] = "nome invalido"
 verificarNome (a:b)
     | a == ' ' = b
     | otherwise = verificarNome b
-
--- Verificar pessoas com as mesmas iniciais
--- rss@uesb.edu.br = rss2@uesb.edu.br
--- verificarMesmasIniciais :: String -> String
--- verificarMesmasIniciais [] = []
--- verificarMesmasIniciais (a:b)
---     |
